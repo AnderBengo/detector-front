@@ -1,0 +1,25 @@
+body {
+    background-color: rgba(241, 241, 228, 0.723);   
+    overflow-x: hidden; overflow-y: hidden;
+    margin-top: 0.5%;    
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+
+h2{
+    background-color: rgba(241, 241, 228, 0.723);
+}
+
+.container{
+    margin-top: 0.5%;    
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+   
+}
+html{
+    overflow-x: hidden; overflow-y: hidden;
+}
+
+label{
+    font-weight: 600;
+}

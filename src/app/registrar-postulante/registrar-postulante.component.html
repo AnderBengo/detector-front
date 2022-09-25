@@ -1,0 +1,324 @@
+<div class="container mt-2">
+  <div class="w-50 m-auto mb-3">
+    <h2 class="text-center" > INGRESE SUS DATOS </h2>
+    Sr(a) postulante, usted tiene que llenar todos los campos de forma obligatoria, la información 
+    que ingrese mediante este formulario tiene calidad de declaración jurada. 
+    La Escuela Profesional a la que desea inscribirse la elegirá en el Paso 3. 
+  
+   
+  </div>
+  
+  <form [formGroup]="FormPostulante"  (ngSubmit)="guardarPostulante()"  > 
+    <div class="container w-75 m-auto"  style="background-color: rgba(241, 241, 228, 0.723);"  >
+      <div class="row align-items-start"  >
+        <div class="col justify-content-center" >
+        <div class="row" >
+          <div class="card-body" style="background-color: white; margin-right: 0.5%; margin-left: 0.5%;" >             
+            <h5 class="text-align" style=" font-weight: bold;">DATOS GENERALES</h5>              
+            <input type = "text-align" class="form-control" id = "id" formControlName="id" [(ngModel)] = "postulante.id"
+            name = "id" autocomplete="off" hidden>
+  
+            <input type = "text-align" class="form-control" id = "documento" formControlName="documento" [(ngModel)] = "postulante.nroDocumento"
+            name = "documento" autocomplete="off" hidden >
+  
+            <input type = "text-align" class="form-control" id = "modalidad" formControlName="modalidad" [(ngModel)] = "postulante.modalidad"
+            name = "modalidad" autocomplete="off" hidden>
+  
+            <div class="form-group">
+              <label >Nombres : </label>
+              <input type = "text-align" class="form-control" id = "nombres" formControlName="nombres" [(ngModel)] = "postulante.nombres"
+              name = "nombres" required >
+            </div>
+  
+            <div class="form-group ">
+              <label >Apellido paterno : </label>
+              <input type = "text-align" class="form-control" id = "paterno" formControlName="paterno" [(ngModel)] = "postulante.aPaterno"
+              name = "paterno" required >
+             </div>
+  
+            <div class="form-group ">
+              <label >Apellido materno : </label>
+              <input type = "text-align" class="form-control" id = "materno" formControlName="materno" [(ngModel)] = "postulante.aMaterno"
+              name = "materno" required >
+            </div>
+  
+            
+              <div class="form-group ">
+                <label >Fecha de nacimiento : </label>
+                <input type="date"  id="fechaNacimiento" name="fechaNacimiento" class="form-control" formControlName="fechaNacimiento" 
+                 [(ngModel)]="postulante.fechaNacimiento" required  >                        
+              </div>
+  
+              <div class="form-group ">
+                <label >Teléfono-celular: </label>
+                 <input type="tel" formControlName="telefono" class="form-control" id="telefono" name="telefono" pattern="[0-9]{10}" maxlength="10" placeholder="Telefono"
+                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' required [(ngModel)] = "postulante.telefono">              
+              </div>
+            
+  
+            <div class="form-group ">
+              <label >Dirección : </label>
+              <input type = "text-align" class="form-control" id = "direccion" formControlName="direccion" [(ngModel)] = "postulante.direccion"
+              name = "direccion" required placeholder="Direccion">
+            </div>
+           
+              <div class="form-group ">
+                <label >Email : </label>
+                <input type = "text-align" class="form-control" id = "email" formControlName="email" [(ngModel)] = "postulante.email"
+                name = "email" required  placeholder="Email" >
+              </div>
+  
+              <div class="form-group ">
+                <label >Estado civil : </label>
+                <select class="form-select" id="civil" formControlName="civil" required [(ngModel)] = "postulante.estadoCivil">
+                  <option [ngValue]="seleccionadaCivil"  selected>Seleccione</option>              
+                <option value={{civil}} *ngFor="let civil of listaEstadoCivil"> {{civil}}</option>
+             </select>              
+              </div>
+           
+  
+              <div class="form-group ">
+                <label >Discapacidad : </label>
+                <select class="form-select" id="discapacidad" formControlName="discapacidad"  required [(ngModel)] = "postulante.discapacidad">
+                  <option [ngValue]="seleccionadaCivil" selected>Seleccione</option>  
+                  <option value={{discapacidad}} *ngFor="let discapacidad of listaDiscapacidad"> {{discapacidad}}</option>
+               </select>              
+              </div>
+  
+              <div class="form-group  ">
+                <label >Sexo : </label>
+                <select class="form-select" id="sexo" formControlName="sexo"  required [(ngModel)] = "postulante.sexo">
+                  <option [ngValue]="seleccionadaCivil" selected>Seleccione</option>  
+                  <option value={{sexo}} *ngFor="let sexo of listaSexo"> {{sexo}}</option>
+               </select>              
+              </div>
+      </div> 
+    </div>
+  
+    <div class="row"> <!-- INICIO DE LA FILA 2 DE LA COLUMNA 1-->
+      <div class="card-body" style="background-color: white; margin-right: 0.5%; margin-left: 0.5%; margin-top: 0.5%;">
+        <h5 class="text-align" style=" font-weight: bold;">DATOS DEL APODERADO</h5>
+          <div class="form-group mb-2">                                                         
+            <input type = "text-align" class="form-control" id = "nombreApoderado" formControlName="nombreApoderado" 
+            [(ngModel)] = "postulante.nombreApoderado" name = "nombreApoderado" required  placeholder="Nombre del apoderado">
+          </div>
+  
+          <div class="form-group mb-2">                                                         
+            <input type = "text-align" class="form-control" id = "paternoApoderado" formControlName="paternoApoderado" 
+            [(ngModel)] = "postulante.paternoApoderado" name = "paternoApoderado" required placeholder="Apellido paterno">
+          </div>
+  
+          <div class="form-group mb-2">                                                         
+            <input type = "text-align" class="form-control" id = "maternoApoderado" formControlName="maternoApoderado" [(ngModel)] = "postulante.maternoApoderado"
+            name = "maternoApoderado" required placeholder="Apellido materno" >                        
+          </div>
+  
+          <div class="form-group mb-3">                                                         
+            <input type = "text-align" class="form-control" id = "telefonoApoderado" formControlName="telefonoApoderado" 
+            [(ngModel)] = "postulante.telefonoApoderado" name = "telefonoApoderado" required placeholder="Teléfono/celular" >
+          </div>
+        </div>  
+    </div><!-- FIN DE LA FILA 2 DE LA COLUMNA 1-->
+  
+    <div class="row"><!-- INICIO DE LA FILA 3 DE LA COLUMNA 1-->
+      <div class="card-body" style="background-color: white; margin-right: 0.5%; margin-left: 0.5%; margin-top: 0.5%;">
+        <h5 class="text-align" style=" font-weight: bold;">NACIONALIDAD</h5>
+        <div class="form-group ">
+          <label >Nacionalidad : </label>
+          <select class="form-select" id="nacionalidad" formControlName="nacionalidad"  required [(ngModel)] = "postulante.nacionalidad">
+            <option [ngValue]="seleccionadaCivil" selected>Seleccione</option>
+            <option value={{nacionalidad}} *ngFor="let nacionalidad of listaNacionalidad"> {{nacionalidad}}</option>
+         </select>          
+        </div>
+      </div>
+    </div><!-- FIN DE LA FILA 3 DE LA COLUMNA 1-->
+  </div><!-- FIN DE LA COLUMNA 1-->
+  
+  
+        <div class="col" ><!-- --------------      INICIO DE LA COL 2  ---- -->
+          <div class="row">
+          <div class="card-body" style="background-color: white; margin-right: 0.5%; margin-left: 0.5%;">
+      
+            <h5 class="text-align" style=" font-weight: bold;">DATOS COLEGIO SECUNDARIO</h5>
+              <div class="form-group ">
+                <label >Año Egreso : </label>              
+                <input type="text-align" id="anioEgreso" name="anioEgreso" class="form-control" formControlName="anioEgreso"
+                       [(ngModel)]="postulante.anioEgreso" required placeholder="Año de conclusión 5to de secundaria">                
+              </div>
+  
+              <div class="form-group ">
+                <label >Promedio : </label>
+                  <input type = "text-align" class="form-control" id = "promedioColegio" formControlName="promedioColegio"
+                  [(ngModel)] = "postulante.promedioColegio"  name = "promedioColegio" required placeholder="Promedio colegio" >
+              </div>
+  
+              <div class="form-group ">
+                  <label >Región colegio : </label>
+  
+                  <select   class="custom-select" formControlName="regionColegio" 
+                              id="regionColegio" class="form-select" (change)="onChangeRegionColegio($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let regionColegio of listaRegionColegio"
+                                                           value="{{regionColegio.id}}">{{regionColegio.descripcion}}</option>
+                          </select>                             
+              </div>
+  
+              <div class="form-group ">
+                  <label >Provincia colegio : </label>
+  
+                  <select   class="custom-select" formControlName="provinciaColegio" [(ngModel)] = "postulante.provinciaColegio"
+                              id="provinciaColegio" class="form-select" (change)="onChangeProvinciaColegio($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let provinciaColegio of listaProvinciaColegio"
+                                                           value="{{provinciaColegio.id}}">{{provinciaColegio.descripcion}}</option>
+                          </select>            
+  
+                              
+              </div>
+  
+              <div class="form-group ">
+                  <label >Distrito colegio : </label>
+  
+                  <select   class="custom-select" formControlName="distritoColegio" [(ngModel)] = "postulante.distritoColegio"
+                              id="distritoColegio" class="form-select" (change)="onChangeDistritoColegio($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let distritoColegio of listaDistritoColegio"
+                                                           value="{{distritoColegio.id}}">{{distritoColegio.descripcion}}</option>
+                          </select>                               
+              </div>
+                
+              <div class="form-group ">
+                  <label >Colegio : </label>
+  
+                  <select   class="custom-select" formControlName="colegio" [(ngModel)] = "postulante.colegio"
+                  id="colegio" class="form-select" (change)="onChangeColegio($event)">
+                  <option value ="" selected>Seleccione</option>
+                                          <option *ngFor="let colegio of listaColegios"
+                                               value="{{colegio.id}}">{{colegio.descripcion}}</option>
+              </select> 
+                               
+              </div>                      
+          </div>
+        </div>
+  
+        <div class="row"> <!-- --------------      INICIO DE LA FILA 2 DE LA COL 2   ---- -->
+          <div class="card-body" style="background-color: white; margin-right: 0.5%; margin-left: 0.5%; margin-top: 0.5%;">
+            <h5 class="text-align" style=" font-weight: bold;">DATOS LUGAR NACIMIENTO</h5>
+            <div class="form-group ">
+              <label >Región : </label>
+  
+              <select   class="custom-select" formControlName="regionNacimiento" [(ngModel)] = "postulante.regionNacimiento"
+                              id="regionNacimiento" class="form-select" (change)="onChangeRegionNacimiento($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let regionNacimiento of listaRegionNacimiento"
+                                                           value="{{regionNacimiento.id}}">{{regionNacimiento.descripcion}}</option>
+                          </select>                     
+          </div>
+    
+          <div class="form-group ">
+            <label >Provincia : </label>
+  
+            <select   class="custom-select" formControlName="provinciaNacimiento" [(ngModel)] = "postulante.provinciaNacimiento"
+                              id="provinciaNacimiento" class="form-select" (change)="onChangeProvinciaNacimiento($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let provinciaNacimiento of listaProvinciaNacimiento"
+                                                           value="{{provinciaNacimiento.id}}">{{provinciaNacimiento.descripcion}}</option>
+                          </select> 
+            
+          </div>
+    
+          <div class="form-group ">
+            <label >Distrito : </label>
+  
+            <select   class="custom-select" formControlName="distritoNacimiento" [(ngModel)] = "postulante.distritoNacimiento"
+                              id="distritoNacimiento" class="form-select" (change)="onChangeDistritoNacimiento($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let distritoNacimiento of listaDistritoNacimiento"
+                                                           value="{{distritoNacimiento.id}}">{{distritoNacimiento.descripcion}}</option>
+                          </select> 
+                     
+          </div>
+          </div>
+        </div> <!-- --------------      FIN DE LA FILA 2 DE LA COL 2   ---- -->
+  
+        <div class="row"> <!-- --------------      INICIO DE LA FILA 3 DE LA COL 2   ---- -->
+          <div class="card-body" style="background-color: white; margin-right: 0.5%; margin-left: 0.5%; margin-top: 0.5%;">   
+            <h5 class="text-align" style=" font-weight: bold;">DATOS DOMICILIO(REVISAR DNI)</h5>      
+              <div class="form-group ">
+                <label >Región : </label>
+  
+                <select   class="custom-select" formControlName="regionDomicilio" [(ngModel)] = "postulante.regionDomicilio"
+                              id="regionDomicilio" class="form-select" (change)="onChangeRegionDomicilio($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let regionDomicilio of listaRegionDomicilio"
+                                                           value="{{regionDomicilio.id}}">{{regionDomicilio.descripcion}}</option>
+                          </select> 
+              </div>
+  
+              <div class="form-group ">
+                <label >Provincia : </label>
+  
+                <select   class="custom-select" formControlName="provinciaDomicilio" [(ngModel)] = "postulante.provinciaDomicilio"
+                              id="provinciaDomicilio" class="form-select" (change)="onChangeProvinciaDomicilio($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let provinciaDomicilio of listaProvinciaDomicilio"
+                                                           value="{{provinciaDomicilio.id}}">{{provinciaDomicilio.descripcion}}</option>
+                          </select> 
+                                     
+              </div>
+  
+              <div class="form-group ">
+                <label >Distrito : </label>
+  
+                <select   class="custom-select" formControlName="distritoDomicilio" [(ngModel)] = "postulante.distritoDomicilio"
+                              id="distritoDomicilio" class="form-select" (change)="onChangeDistritoDomicilio($event)">
+                              <option value ="" selected>Seleccione</option>
+                                                      <option *ngFor="let distritoDomicilio of listaDistritoDomicilio"
+                                                           value="{{distritoDomicilio.id}}">{{distritoDomicilio.descripcion}}</option>
+                          </select> 
+              </div>                   
+          </div>
+        </div>  <!-- --------------      FIN DE LA FILA 3 DE LA COL 2   ---- -->
+  
+        <div class="row"><!-- --------------      INICIO DE LA FILA 4 DE LA COL 2   ---- -->
+          <div class="card-body" style="background-color: white; margin-right: 0.5%; margin-left: 0.5%; margin-top: 0.5%;">                  
+            <h5 class="text-align" style=" font-weight: bold;">TURNO Y CUOTAS</h5>
+            <div class="form-group ">
+              <label >Elija turno y número de cuotas de pago: </label>
+              <select class="form-select" id="turno" formControlName="turno"  required [(ngModel)] = "postulante.turno">
+                <option [ngValue]="seleccionadaCivil" selected>Seleccione</option>
+                <option value={{turno}} *ngFor="let turno of listaTurno"> {{turno}}</option>
+             </select>                
+             </div>
+                          
+          </div>
+  
+        </div><!-- --------------      FIN DE LA FILA 4 DE LA COL 2   ---- -->
+        </div>      <!-- --------------      FIN DE LA COL 2   ---- -->
+      </div>
+  
+  
+      <div style="text-align: center;" class="my-3">
+        <button type="submit" class="btn btn-success" style="background-color: #fb1f06c7;" >Siguiente</button>
+      </div>
+      </div>    
+      </form>
+</div>
+
+
+
+<div class="container">
+  <div class="modal fade" id="alertaError" role="dialog">
+      <div class="modal-dialog modal-sm">
+          <div class="alert alert-danger alert-dismissible"
+              id="alertaReporte" style="text-align: center;">                    
+              <h3 class="modal-title">
+                  <strong id="strong">! ALERTA !</strong>
+              </h3>
+              <h5 id="msjReporte" >
+                  <strong style="color: black;">LLENE CAMPO FECHA</strong>
+              </h5>
+          </div>
+      </div>
+  </div>
+</div>

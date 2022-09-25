@@ -1,0 +1,88 @@
+<app-spinner></app-spinner>
+
+    <p class="w-50 mx-auto my-2">
+      Sr(a) postulante, para continuar con su inscripción, tiene que cargar su foto al sistema.
+      también debe cargar un archivo PDF el cual contiene su DNI (ambas caras); luego elegir la
+      Escuela Profesional
+      Es obligatorio que la foto a cargar tenga las siguientes características: <br>
+      1.-Foto en formato JPG o PNG <br>
+      2.-Foto a color con fondo blanco <br>
+      3.-Tomada de frente, con ojos abiertos y expresión neutral<br>
+      4.-Posición de hombros recto <br>
+      5.-Sin recortar la foto <br>
+      6.-La foto debe ser rectangular (704x480 pixeles) <br>
+    </p>
+
+<div class="card col-md-7 offset-md-2 offset-md-3" *ngIf="postulante">
+
+
+  <form>
+<div class="row">
+<div class="col">
+  <img src="assets/images/paso3.JPG" width="320" height="320" style="float:left;" *ngIf="!preview">
+  <img src="assets/images/paso3.JPG" width="320" height="320" style="float:left;" [src]="preview" *ngIf="preview">
+</div>
+
+
+<div class="col">
+<div class="row">
+  <div class="modal-body" >
+
+    <title>SUBIR FOTOGRAFIA y ARCHIVO PDF</title>
+      <input type="file" class="form-control"  (change)="subirImagen($event)" id="foto"
+      
+       accept="image/*" [disabled]="postulante.foto && postulante.fotoValidada"  /> 
+       <p style="color: red; margin-bottom: 0;" *ngIf="postulante.fotoValidada">La foto ya fue validada.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="modal-body" >
+    <label> SUBIR DNI </label>
+    <input type="file" class="form-control" [disabled]="(!fotoAceptada || !postulante.fotoValidada ) &&  postulante.dniValidado "  (change)="subirDni($event)" id="dni"
+     accept=".pdf" style="width: min-content;"/>
+     <p style="color: red; margin-bottom: 0;" *ngIf="postulante.dniValidado">El DNI ya fue validado.</p>    
+</div>
+</div>
+
+<div class="row">
+  <div class="modal-body form-group w-75">
+    <label >ESCUELA PROFESIONAL : </label>
+    <select class="form-select" id="escuela"  required  [(ngModel)]="escuelaProfesionalSeleccionada" name="escuela">
+      <option [ngValue]="undefined"  selected>Seleccione</option>              
+    <option [ngValue]="escuela" *ngFor="let escuela of listaEscuela" > {{escuela.nombre}}</option>
+ </select>                
+</div>
+</div>
+</div>
+</div> 
+</form>
+<div style="text-align: center; padding-top: 2%;">
+  <button type="button" class="btn btn-success" style="background-color: #fb1f06c7; margin-left: 0.5%;" (click)="subir()"
+  [disabled]="!fotoAceptada && !postulante.fotoValidada " >Guardar</button>
+</div>
+  </div>
+
+
+
+
+    <div class="container">
+      <div class="modal fade" id="alertaError" role="dialog">
+          <div class="modal-dialog modal-sm">
+              <div class="alert alert-danger alert-dismissible"
+                  id="alertaReporte" style="text-align: center;">                    
+                  <h3 class="modal-title">
+                      <strong id="strong">! ALERTA !</strong>
+                  </h3>
+                  <h5 id="msjReporte" >
+                      <strong style="color: black;">SELECCIONE EL DOCUMENTO</strong>
+                  </h5>
+              </div>
+          </div>
+      </div>
+    </div>
+           
+
+
+
+
