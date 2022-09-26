@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   login:Login=new Login();  
   seleccionadaModalidad:string='';
   listaModalidiad:any[]=[];
-  
 
   constructor(private fb: FormBuilder,private servicioLogin: LoginService,
     private router: Router) {
@@ -111,21 +110,17 @@ export class LoginComponent implements OnInit {
             }
 
             if(response != null){
-
               if(response.foto != null || response.fotodni != null) {
-                if((response.fotodni && !response.dniValidado) || !response.fotodni){
-                  console.log("1")
+                if((response.fotodni && response.isDniValidado != 'VALIDADO') || !response.fotodni){
                   this.router.navigate(['login/empleados/subir-foto']);
                   return
                 }
 
-                if((!response.fotoValidada && response.foto) || !response.foto) {
-                  console.log("2")
+                if((response.isFotoValidada != 'VALIDADO' && response.foto) || !response.foto) {
                   this.router.navigate(['login/empleados/subir-foto']);
                   return
                 }
 
-                console.log("3")
 
                  this.router.navigate(['/login/empleados/subir-foto/postulante', response.nroDocumento]);
                 return
