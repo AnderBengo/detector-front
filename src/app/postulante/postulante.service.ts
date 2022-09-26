@@ -36,7 +36,17 @@ export class PostulanteService {
     return this.http.get<Postulante>(nuevaUrl);
   }
 
-    imprimirReporteService(postulante:Postulante){          
-    return this.http.post<Postulante>(this.urlReporte, postulante,this.httpOptions);
+  //   imprimirReporteService(postulante:Postulante){          
+  //   return this.http.post<Postulante>(this.urlReporte, postulante,this.httpOptions);
+  //  }
+
+  imprimirReporteService(nroDocumento: string): Observable<any>{     
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+      // 'responseType'  : 'blob' as 'json'        //This also worked
+    };     
+    return this.http.get<any>(this.urlReporte + '/' + nroDocumento, httpOptions);
    }
+
+
 }

@@ -19,21 +19,33 @@ export class PostulanteComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=> {
       let dni=params['dni']
-      this.loginservice.buscarPostulantePorDni(dni).subscribe(response => this.postulante=response)
+      this.loginservice.buscarPostulantePorDni(dni).subscribe(response => {
+        console.log(response)
+        this.postulante=response
+      })
 
     } )
   }
 
   imprimirReporte(){
-    this.postulanteServicio.imprimirReporteService(this.postulante).subscribe(dato => {         
-     console.warn('si imprime');         
-    });  
+    // this.postulanteServicio.imprimirReporteService(this.postulante.nroDocumento).subscribe(dato => {         
+    //  console.warn('si imprime');         
+    // });  
+
+    let link = document.createElement("a");
+          link.href= `http://localhost:8080/reporte/${this.postulante.nroDocumento}`;
+          
+          link.click();
   
   }
 
   abrirDniPdf() {
-    this.subirFoto.abrirDniPdf(this.postulante.nroDocumento)
-        .subscribe()
+    // this.subirFoto.abrirDniPdf(this.postulante.nroDocumento)
+    //     .subscribe()
+    let link = document.createElement("a");
+    link.href= `http://localhost:8080/foto/abrirPdf/${this.postulante.nroDocumento}`;
+    
+    link.click();
   }
 
 }

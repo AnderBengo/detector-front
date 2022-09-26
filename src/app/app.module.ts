@@ -13,6 +13,7 @@ import { PagoComponent } from './pago/pago/pago.component';
 import { SubirFotoComponent } from './subirFoto/subir-foto/subir-foto.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
+import { ListarPostulantesComponent } from './listar-postulantes/listar-postulantes.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
     PostulanteDetalleComponent,
     PagoComponent,
     SubirFotoComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ListarPostulantesComponent
   ],
   imports: [
     BrowserModule,
