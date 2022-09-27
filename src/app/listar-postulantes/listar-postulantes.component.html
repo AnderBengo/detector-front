@@ -1,1 +1,36 @@
-<p>listar-postulantes works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Documentos</th>
+        <th scope="col">Validar Foto</th>
+        <th scope="col">Validar DNI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let postulante of postulantes">
+        <th>{{postulante.nombres}}</th>
+        <td>{{postulante.aPaterno}} {{postulante.aMaterno}}</td>
+        <td>{{postulante.nroDocumento}}</td>
+        <td>
+            <div class="btn btn-primary btn-sm" (click)="verDNI(postulante.nroDocumento)">Ver DNI</div>
+            <div class="btn btn-primary btn-sm ms-2" (click)="verFOTO(postulante.nroDocumento)">Ver Foto</div>
+        </td>
+        <td>
+            <div class="btn btn-success btn-sm" (click)="validarFoto('VALIDADO', postulante.nroDocumento)" *ngIf="postulante.isFotoValidada == 'EN_PROCESO'">Validar</div>
+            <div class="btn btn-danger btn-sm ms-2" (click)="validarFoto('RECHAZADO', postulante.nroDocumento)" *ngIf="postulante.isFotoValidada == 'EN_PROCESO'">Rechazar</div>
+            <span class="badge bg-success" *ngIf="postulante.isFotoValidada == 'VALIDADO'">Aceptado</span>
+            <span class="badge bg-danger" *ngIf="postulante.isFotoValidada == 'RECHAZADO'">Rechazado</span>
+        </td>
+        <td>
+            <div class="btn btn-success btn-sm" (click)="validarDNI('VALIDADO', postulante.nroDocumento)" *ngIf="postulante.isDniValidado == 'EN_PROCESO'">Validar</div>
+            <div class="btn btn-danger btn-sm ms-2" (click)="validarDNI('RECHAZADO', postulante.nroDocumento)" *ngIf="postulante.isDniValidado == 'EN_PROCESO'">Rechazar</div>
+            <span class="badge bg-success" *ngIf="postulante.isDniValidado == 'VALIDADO'">Aceptado</span>
+            <span class="badge bg-danger" *ngIf="postulante.isDniValidado == 'RECHAZADO'">Rechazado</span>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>

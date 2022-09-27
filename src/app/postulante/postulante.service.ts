@@ -27,6 +27,18 @@ export class PostulanteService {
     return this.http.post<Postulante>(this.urlguardaPostulante, postulante,this.httpOptions);
   }
 
+  listarPostulantes(): Observable<any> {
+    return this.http.get<any>(this.urlguardaPostulante+'/lista-postulante')
+  }
+
+  validarFoto(postulante: any): Observable<any> {
+    return this.http.put<any>(this.urlguardaPostulante+'/validar-foto', postulante)
+  }
+
+  validarDni(postulante: any): Observable<any> {
+    return this.http.put<any>(this.urlguardaPostulante+'/validar-dni', postulante)
+  }
+
   putGuardarPostulante(postulante:Postulante){
     return this.http.put<Postulante>(this.urlguardaPostulante, postulante,this.httpOptions);
   }

@@ -28,22 +28,24 @@
 <div class="row">
   <div class="modal-body" >
 
-    <title>SUBIR FOTOGRAFIA y ARCHIVO PDF</title>
-      <input type="file" class="form-control"  (change)="subirImagen($event)" id="foto"
+    <label>SUBIR FOTOGRAFIA</label>
+      <input type="file" class="form-control w-75"  (change)="subirImagen($event)" id="foto"
       
        accept="image/*" [disabled]="(postulante.foto && postulante.isFotoValidada != 'RECHAZADO') && postulante.isFotoValidada != null"  /> 
-       <p style="color: red; margin-bottom: 0;" *ngIf="postulante.isFotoValidada == 'VALIDADO'">La foto ya fue validada.</p>
-       <p style="color: red; margin-bottom: 0;" *ngIf="postulante.isFotoValidada == 'EN_PROCESO'">La foto está en proceso de validación.</p> 
+       <p style="margin-bottom: 0;" class="text-success" *ngIf="postulante.isFotoValidada == 'VALIDADO'">Foto aceptada</p>
+       <p style="margin-bottom: 0;" class="text-info" *ngIf="postulante.isFotoValidada == 'EN_PROCESO'">Foto en proceso de validación</p> 
+       <p style="margin-bottom: 0;" class="text-danger" *ngIf="postulante.isFotoValidada == 'RECHAZADO'">Foto rechazada, intente nuevamente</p> 
   </div>
 </div>
 
 <div class="row">
   <div class="modal-body" >
     <label> SUBIR DNI </label>
-    <input type="file" class="form-control" [disabled]="(!fotoAceptada || !postulante.isFotoValidada ) &&  postulante.isDniValidado != 'RECHAZADO'  && postulante.isDniValidado != null "  (change)="subirDni($event)" id="dni"
+    <input type="file" class="form-control  w-75" [disabled]="(!fotoAceptada || !postulante.isFotoValidada ) &&  postulante.isDniValidado != 'RECHAZADO'  && postulante.isDniValidado != null "  (change)="subirDni($event)" id="dni"
      accept=".pdf" style="width: min-content;"/>
-     <p style="color: red; margin-bottom: 0;" *ngIf="postulante.isDniValidado == 'VALIDADO'">El DNI ya fue validado.</p>  
-     <p style="color: red; margin-bottom: 0;" *ngIf="postulante.isDniValidado == 'EN_PROCESO'">El DNI está en proceso de validación.</p>    
+     <p style="margin-bottom: 0;" class="text-success" *ngIf="postulante.isDniValidado == 'VALIDADO'">DNI aceptado</p>  
+     <p style="margin-bottom: 0;" class="text-info" *ngIf="postulante.isDniValidado == 'EN_PROCESO'">DNI en proceso de validación</p>    
+     <p style="margin-bottom: 0;" class="text-danger" *ngIf="postulante.isDniValidado == 'RECHAZADO'">DNI rechazado, intente nuevamente</p>
 </div>
 </div>
 
